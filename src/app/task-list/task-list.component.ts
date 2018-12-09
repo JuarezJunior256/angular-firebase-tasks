@@ -8,7 +8,7 @@ import { Task } from '../models/task.model';
 })
 export class TaskListComponent implements OnInit {
 
-  task: Task[] = [
+  tasks: Task[] = [
     {
       uid: '',
       title: 'Curso Anguar',
