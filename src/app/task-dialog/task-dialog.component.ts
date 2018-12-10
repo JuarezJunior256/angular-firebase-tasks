@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Task } from '../models/task.model';
 import { TaskService } from '../task.service';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-task-dialog',
@@ -10,20 +10,27 @@ import { MatDialogRef } from '@angular/material';
 })
 export class TaskDialogComponent implements OnInit {
 
-  task: Task = {title: ''};
+   dialogTitle = 'Nova Tarefa';
+   task: Task = {title: ''};
 
-  constructor( private taskService: TaskService,
+  constructor( @Inject(MAT_DIALOG_DATA) private data: any,
+               private taskService: TaskService,
                private dialogRef: MatDialogRef<TaskDialogComponent>) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    if (this.data) {  // se data tiver dados
+      this.dialogTitle = 'Nova Tarefa';
+      this.task = this.data.task;
+    }
   }
 
   onSave(): void {
-    // tslint:disable-next-line:no-unused-expression
-    this.taskService.create(this.task)
-       .then(() => {
-          console.log('Tarefa Criada');
-          this.dialogRef.close();
+    const operation: Promise<void> =
+    (!this.data) // se não tiver dados
+      ? this.taskService.create(this.task) // o metodo create é chamado
+      : this.taskService.update(this.task); // se não o metodo update é chamado
+   operation.then(() => {
+        this.dialogRef.close();
        });
 
   }

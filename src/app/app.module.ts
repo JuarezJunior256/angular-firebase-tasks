@@ -4,7 +4,7 @@ import { AngularFireModule} from 'angularfire2';
 import { AngularFirestoreModule} from 'angularfire2/firestore';
 import { MatToolbarModule, MatListModule, MatLineModule,
          MatSlideToggleModule, MatButtonModule, MatIconModule,
-         MatDialogModule, MatFormFieldModule, MatInputModule} from '@angular/material';
+         MatDialogModule, MatFormFieldModule, MatInputModule, MatMenuModule} from '@angular/material';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -35,6 +35,7 @@ import { TaskDialogComponent } from './task-dialog/task-dialog.component';
     MatFormFieldModule,
     MatDialogModule,
     MatIconModule,
+    MatMenuModule,
     MatToolbarModule,
     MatLineModule,
     MatSlideToggleModule,
