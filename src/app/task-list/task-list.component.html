@@ -1,10 +1,22 @@
-<mat-list>
+<mat-nav-list>
   <app-task-item *ngFor="let task of tasks$ | async"
   [task]="task"
-  (perfomTask)="onPerformTask($event)"
-  (selectTask)="selectedTask=$event">
+  (performTask)="onPerformTask($event)"
+  (selectTask)="selectedTask=$event"
+  [matMenuTriggerFor]="taskMenu">
 </app-task-item>
-</mat-list>
+</mat-nav-list>
+
+<mat-menu #taskMenu="matMenu" overlapTrigger="false">
+  <button mat-menu-item>
+    <mat-icon>Editar</mat-icon>
+    <span>Atualizar</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>Deletar</mat-icon>
+    <span>Remove</span>
+  </button>
+</mat-menu>
 
 
 <button mat-fab class="fab-bottom-right" (click)="showDialog()">
