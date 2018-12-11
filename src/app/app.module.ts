@@ -29,7 +29,7 @@ import { TaskDialogComponent } from './task-dialog/task-dialog.component';
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     FormsModule,
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(), // enablePersistence para trabalhar com dados offline
     MatButtonModule,
     MatInputModule,
     MatProgressSpinnerModule,
