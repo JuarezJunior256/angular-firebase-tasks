@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 
 import { Task } from '../app/models/task.model';
 import { Observable } from 'rxjs';
+import { CollectionReference } from '@firebase/firestore-types';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class TaskService {
   constructor(private db: AngularFirestore) { this.setTasks(); }
 
   private setTasks(): void {
-    this.tasks = this.db.collection<Task>('/tasks');
+    this.tasks = this.db.collection<Task>('/tasks',
+    (ref: CollectionReference) => ref.orderBy('done', 'asc'));
   }
 
   // metodo para inserir no banco
